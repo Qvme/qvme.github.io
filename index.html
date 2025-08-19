@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaos</title>
+    <style>
+        /* CSS Reset and Basic Styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Video Background Container */
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            background: cover;
+            overflow: hidden;
+        }
+
+        /* Overlay Content */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        /* Content Styling */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Responsive Video */
+        video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        /* Mute Button */
+        #muteButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay loop muted playsinline>
+        <source src="https://d.uguu.se/UlxVmHlz.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Content Overlay -->
+<div class="overlay" style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Georgia', serif;
+    padding: 20px;
+    box-sizing: border-box;
+">
+    <div class="content" style="
+        text-align: center;
+        max-width: 800px;
+        width: 100%;
+        padding: 40px;
+    ">
+        <h5 style="
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        ">VOID</h5>
+        <p style="
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        ">chaos is inherent in all compounded things.</p>
+        <p style="
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        ">You cannot comprehend what you face, but you will feel it.</p>
+        <p style="
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        ">those who imposes their beliefs on others, are most pitiful souls</p>
+        <h3 style="
+            font-size: 1.2em;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        ">This is</h3>
+        <h1 style="
+            font-size: 2.5em;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        "> Chaos </h1>
+    </div>
+</div>
+
+
+
+    <!-- Mute/Unmute Button -->
+    <button id="muteButton">Unmute</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-background');
+            const muteButton = document.getElementById('muteButton');
+
+            let isMuted = true;
+
+            // Mute/Unmute Toggle
+            muteButton.addEventListener('click', function() {
+                if (isMuted) {
+                    video.muted = false;
+                    muteButton.textContent = 'Mute';
+                    isMuted = false;
+                } else {
+                    video.muted = true;
+                    muteButton.textContent = 'Unmute';
+                    isMuted = true;
+                }
+            });
+
+           // video loops and autoplays
+            video.addEventListener('ended', function() {
+                this.play();
+            });
+        });
+    </script>
+</body>
+</html>
